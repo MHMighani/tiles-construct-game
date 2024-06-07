@@ -11,3 +11,25 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1px;
 }
+
+.reset_btn {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    background-color: inherit;
+    cursor: pointer;
+
+    &__icon {
+        width: 20px;
+
+    }
+}
+
+.controller_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

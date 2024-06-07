@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./styles.module.scss";
 
-const GRID_SIZE = 25;
+const GRID_SIZE = 81;
 const DEFAULT_BG_INDEX = 17;
 
 function MainGrid({ tilesState, setTilesState }) {

@@ -4,6 +4,7 @@
     height: 50px;
     background-color: purple;
     border: 1px solid transparent;
+    overflow: hidden;
 
     &[data-selected = "true"] {
         border-color: gold;
@@ -14,6 +15,6 @@
     width: fit-content;
     height: fit-content;
     display: grid;
-    grid-template-columns: repeat(5,1fr);
-    grid-template-rows: repeat(5,1fr);
+    grid-template-columns: repeat(9,1fr);
+    grid-template-rows: repeat(9,1fr);
 }

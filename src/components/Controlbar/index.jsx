@@ -1,3 +1,4 @@
+import ResetIcon from "assets/icons/refresh.svg";
 import styles from "./styles.module.scss";
 
 // TODO: make dynamic
@@ -21,8 +22,14 @@ function TilePicker({ handlePickTileBg, resetGrid }) {
   ));
 
   return (
-    <div>
-      <button onClick={handleClickResetBtn}>Reset</button>
+    <div className={styles.controller_wrapper}>
+      <button
+        title="reset"
+        className={styles.reset_btn}
+        onClick={handleClickResetBtn}
+      >
+        <img className={styles.reset_btn__icon} src={ResetIcon} alt="" />
+      </button>
       <div className={styles.tile_picker_container}>{renderTiles}</div>
     </div>
   );
