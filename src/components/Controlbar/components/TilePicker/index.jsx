@@ -9,11 +9,9 @@ function TilePicker() {
 
   // dynamically render all tiles from assets
   const renderTiles = tilesArray.map((_, index) => (
-    <img
-      key={index}
-      alt={index}
-      src={require(`assets/tiles/${index + 1}.png`)}
-    />
+    <div key={index} className={styles.tile}>
+      <img alt={index} src={require(`assets/tiles/${index + 1}.png`)} />
+    </div>
   ));
 
   return <div className={styles.tile_picker_container}>{renderTiles}</div>;
