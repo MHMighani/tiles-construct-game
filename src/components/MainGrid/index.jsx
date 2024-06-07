@@ -10,16 +10,28 @@ function MainGrid({ tilesState, setTilesState }) {
     return tilesState[tileNum]?.selected;
   };
 
-  const handleClickTile = (tileNum) => {
+  const updateTile = (tileNum, newState) => {
     const prevTileState = tilesState[tileNum] || {};
     const newTilesState = [...tilesState];
 
     newTilesState[tileNum] = {
       ...prevTileState,
-      selected: !prevTileState.selected,
+      ...newState,
     };
 
     setTilesState(newTilesState);
+  };
+
+  const handleClickTile = (tileNum) => {
+    const prevTileState = tilesState[tileNum] || {};
+
+    updateTile(tileNum, { selected: !prevTileState.selected });
+  };
+
+  const handleClickContextMenu = (e, tileNum) => {
+    e.preventDefault();
+
+    updateTile(tileNum, { bg: false });
   };
 
   const renderTileImage = (tile) => {
@@ -34,6 +46,7 @@ function MainGrid({ tilesState, setTilesState }) {
       data-selected={isTileSelected(index)}
       className={styles.tile}
       key={index}
+      onContextMenu={(e) => handleClickContextMenu(e, index)}
     >
       {renderTileImage(tilesState[index])}
     </div>
