@@ -1,8 +1,9 @@
 import styles from "./styles.module.scss";
 
+const GRID_SIZE = 25;
+
 function MainGrid() {
-  const gridSize = 16;
-  const tilesArray = new Array(gridSize).fill(null);
+  const tilesArray = new Array(GRID_SIZE).fill(null);
 
   const renderTiles = tilesArray.map((_, index) => (
     <div className={styles.tile} key={index}></div>
