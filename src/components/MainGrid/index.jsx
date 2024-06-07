@@ -11,10 +11,14 @@ function MainGrid({ tilesState, setTilesState }) {
 
   const handleClickTile = (tileNum) => {
     const prevTileState = tilesState[tileNum] || {};
-    setTilesState({
-      ...tilesState,
-      [tileNum]: { ...prevTileState, selected: !prevTileState.selected },
-    });
+    const newTilesState = [...tilesState];
+
+    newTilesState[tileNum] = {
+      ...prevTileState,
+      selected: !prevTileState.selected,
+    };
+
+    setTilesState(newTilesState);
   };
 
   const renderTiles = tilesArray.map((_, index) => (
@@ -23,7 +27,9 @@ function MainGrid({ tilesState, setTilesState }) {
       data-selected={isTileSelected(index)}
       className={styles.tile}
       key={index}
-    ></div>
+    >
+      {tilesState[index]?.bg ? <img src={tilesState[index]?.bg} /> : null}
+    </div>
   ));
 
   return <div className={styles.main_grid}>{renderTiles}</div>;

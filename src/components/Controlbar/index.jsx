@@ -1,12 +1,24 @@
-import TilePicker from "./components/TilePicker";
 import styles from "./styles.module.scss";
 
-function Controlbar() {
-  return (
-    <div>
-      <TilePicker />
+// TODO: make dynamic
+const TILES_NUM = 18;
+
+function TilePicker({ handlePickTileBg }) {
+  // TODO: reusable grid template
+  const tilesArray = new Array(TILES_NUM).fill(null);
+
+  // dynamically render all tiles from assets
+  const renderTiles = tilesArray.map((_, index) => (
+    <div
+      key={index}
+      onClick={() => handlePickTileBg(index)}
+      className={styles.tile}
+    >
+      <img alt={index} src={require(`assets/tiles/${index + 1}.png`)} />
     </div>
-  );
+  ));
+
+  return <div className={styles.tile_picker_container}>{renderTiles}</div>;
 }
 
-export default Controlbar;
+export default TilePicker;
