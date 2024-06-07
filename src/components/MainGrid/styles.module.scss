@@ -1,0 +1,13 @@
+.tile {
+    width: 50px;
+    height: 50px;
+    background-color: black;
+}
+
+.main_grid {
+    width: fit-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
