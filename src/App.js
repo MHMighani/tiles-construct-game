@@ -1,12 +1,9 @@
-import MainGrid from "./components/MainGrid";
-import Controlbar from "./components/Controlbar";
-import "./App.css";
+import Main from "components/Main";
 
 function App() {
   return (
     <div className="App">
-      <MainGrid />
-      <Controlbar />
+      <Main />
     </div>
   );
 }
