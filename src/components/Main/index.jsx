@@ -16,10 +16,12 @@ function Main() {
     setTilesState(newTilesState);
   };
 
+  const resetGrid = () => setTilesState([]);
+
   return (
     <div className={styles.main}>
       <MainGrid {...{ tilesState, setTilesState }} />
-      <Controlbar {...{ handlePickTileBg }} />
+      <Controlbar {...{ handlePickTileBg, resetGrid }} />
     </div>
   );
 }

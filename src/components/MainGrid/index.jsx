@@ -37,7 +37,13 @@ function MainGrid({ tilesState, setTilesState }) {
   const renderTileImage = (tile) => {
     const bgIndex = tile?.bg || DEFAULT_BG_INDEX;
 
-    return <img alt="tile" src={require(`assets/tiles/${bgIndex + 1}.png`)} />;
+    return (
+      <img
+        draggable={false}
+        alt="tile"
+        src={require(`assets/tiles/${bgIndex + 1}.png`)}
+      />
+    );
   };
 
   const renderTiles = tilesArray.map((_, index) => (

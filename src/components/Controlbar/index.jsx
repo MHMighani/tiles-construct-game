@@ -3,9 +3,11 @@ import styles from "./styles.module.scss";
 // TODO: make dynamic
 const TILES_NUM = 18;
 
-function TilePicker({ handlePickTileBg }) {
+function TilePicker({ handlePickTileBg, resetGrid }) {
   // TODO: reusable grid template
   const tilesArray = new Array(TILES_NUM).fill(null);
+
+  const handleClickResetBtn = () => resetGrid();
 
   // dynamically render all tiles from assets
   const renderTiles = tilesArray.map((_, index) => (
@@ -18,7 +20,12 @@ function TilePicker({ handlePickTileBg }) {
     </div>
   ));
 
-  return <div className={styles.tile_picker_container}>{renderTiles}</div>;
+  return (
+    <div>
+      <button onClick={handleClickResetBtn}>Reset</button>
+      <div className={styles.tile_picker_container}>{renderTiles}</div>
+    </div>
+  );
 }
 
 export default TilePicker;
