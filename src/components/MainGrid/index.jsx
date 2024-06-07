@@ -1,9 +1,11 @@
+import { useState } from "react";
 import styles from "./styles.module.scss";
 
 const GRID_SIZE = 25;
 const DEFAULT_BG_INDEX = 17;
 
 function MainGrid({ tilesState, setTilesState }) {
+  const [dragging, setDragging] = useState(false);
   const tilesArray = new Array(GRID_SIZE).fill(null);
 
   const isTileSelected = (tileNum) => {
@@ -22,6 +24,10 @@ function MainGrid({ tilesState, setTilesState }) {
     setTilesState(newTilesState);
   };
 
+  const markTileAsSelected = (tileNum) => {
+    updateTile(tileNum, { selected: true });
+  };
+
   const handleClickTile = (tileNum) => {
     const prevTileState = tilesState[tileNum] || {};
 
@@ -32,6 +38,14 @@ function MainGrid({ tilesState, setTilesState }) {
     e.preventDefault();
 
     updateTile(tileNum, { bg: false });
+  };
+
+  const handleMouseDownOnGrid = () => {
+    setDragging(true);
+  };
+
+  const handleMouseMove = (tileNum) => {
+    if (dragging) markTileAsSelected(tileNum);
   };
 
   const renderTileImage = (tile) => {
@@ -48,6 +62,8 @@ function MainGrid({ tilesState, setTilesState }) {
 
   const renderTiles = tilesArray.map((_, index) => (
     <div
+      onMouseUp={() => setDragging(false)}
+      onMouseMove={() => handleMouseMove(index)}
       onClick={() => handleClickTile(index)}
       data-selected={isTileSelected(index)}
       className={styles.tile}
@@ -58,7 +74,11 @@ function MainGrid({ tilesState, setTilesState }) {
     </div>
   ));
 
-  return <div className={styles.main_grid}>{renderTiles}</div>;
+  return (
+    <div onMouseDown={handleMouseDownOnGrid} className={styles.main_grid}>
+      {renderTiles}
+    </div>
+  );
 }
 
 export default MainGrid;
