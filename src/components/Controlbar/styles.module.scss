@@ -12,13 +12,14 @@
     gap: 1px;
 }
 
-.reset_btn {
+.btn {
     display: flex;
+    border-radius: 4px;
     width: 30px;
     height: 30px;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
+    border: 1px solid lightgrey;
     background-color: inherit;
     cursor: pointer;
 
@@ -31,5 +32,10 @@
 .controller_wrapper {
     display: flex;
     flex-direction: column;
+    gap: .5rem;
+}
+
+.btn_wrapper {
+    display: flex;
     gap: 1rem;
 }

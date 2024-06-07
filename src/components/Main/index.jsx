@@ -18,10 +18,18 @@ function Main() {
 
   const resetGrid = () => setTilesState([]);
 
+  const eraseSelected = () => {
+    const newState = tilesState.map((tile) =>
+      tile && tile.selected ? { ...tile, bg: false, selected: false } : tile
+    );
+
+    setTilesState(newState);
+  };
+
   return (
     <div className={styles.main}>
       <MainGrid {...{ tilesState, setTilesState }} />
-      <Controlbar {...{ handlePickTileBg, resetGrid }} />
+      <Controlbar {...{ handlePickTileBg, resetGrid, eraseSelected }} />
     </div>
   );
 }
