@@ -15,7 +15,7 @@ function TilePicker({ handlePickTileBg, resetGrid, eraseSelected }) {
   const renderTiles = tilesArray.map((_, index) => (
     <div
       key={index}
-      onClick={() => handlePickTileBg(index)}
+      onClick={() => handlePickTileBg(index + 1)}
       className={styles.tile}
     >
       <img alt={index} src={require(`assets/tiles/${index + 1}.png`)} />

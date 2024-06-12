@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 
 const GRID_SIZE = 81;
-const DEFAULT_BG_INDEX = 17;
+const DEFAULT_BG_INDEX = 18;
 
 function MainGrid({ tilesState, setTilesState }) {
   const [dragging, setDragging] = useState(false);
@@ -55,7 +55,7 @@ function MainGrid({ tilesState, setTilesState }) {
       <img
         draggable={false}
         alt="tile"
-        src={require(`assets/tiles/${bgIndex + 1}.png`)}
+        src={require(`assets/tiles/${bgIndex}.png`)}
       />
     );
   };
@@ -64,7 +64,7 @@ function MainGrid({ tilesState, setTilesState }) {
     <div
       onMouseUp={() => setDragging(false)}
       onMouseMove={() => handleMouseMove(index)}
-      onClick={() => handleClickTile(index)}
+      onDoubleClick={() => handleClickTile(index)}
       data-selected={isTileSelected(index)}
       className={styles.tile}
       key={index}
