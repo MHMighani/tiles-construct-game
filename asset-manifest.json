@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tiles-construct-game/static/css/main.53e8dd46.css",
-    "main.js": "/tiles-construct-game/static/js/main.983bed05.js",
+    "main.css": "/tiles-construct-game/static/css/main.23be4a6e.css",
+    "main.js": "/tiles-construct-game/static/js/main.09510aac.js",
     "static/js/453.52d2efd2.chunk.js": "/tiles-construct-game/static/js/453.52d2efd2.chunk.js",
     "static/media/1.png": "/tiles-construct-game/static/media/1.5fec7cf581bc04f185db.png",
     "static/media/3.png": "/tiles-construct-game/static/media/3.a06968e7293bdd3ba5b5.png",
@@ -10,12 +10,12 @@
     "static/media/eraser.svg": "/tiles-construct-game/static/media/eraser.48d524877219379cacea3dd9916b9535.svg",
     "static/media/refresh.svg": "/tiles-construct-game/static/media/refresh.2a0630be28ccf227f3a805832ca6075e.svg",
     "index.html": "/tiles-construct-game/index.html",
-    "main.53e8dd46.css.map": "/tiles-construct-game/static/css/main.53e8dd46.css.map",
-    "main.983bed05.js.map": "/tiles-construct-game/static/js/main.983bed05.js.map",
+    "main.23be4a6e.css.map": "/tiles-construct-game/static/css/main.23be4a6e.css.map",
+    "main.09510aac.js.map": "/tiles-construct-game/static/js/main.09510aac.js.map",
     "453.52d2efd2.chunk.js.map": "/tiles-construct-game/static/js/453.52d2efd2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.53e8dd46.css",
-    "static/js/main.983bed05.js"
+    "static/css/main.23be4a6e.css",
+    "static/js/main.09510aac.js"
   ]
 }
