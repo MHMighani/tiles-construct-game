@@ -49,7 +49,9 @@ function MainGrid({ tilesState, setTilesState }) {
   };
 
   const renderTileImage = (tile) => {
-    const bgIndex = tile?.bg || DEFAULT_BG_INDEX;
+    const bgIndex = tile?.bg;
+
+    if (!bgIndex) return <></>;
 
     return (
       <img
