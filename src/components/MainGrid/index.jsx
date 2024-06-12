@@ -55,6 +55,7 @@ function MainGrid({ tilesState, setTilesState }) {
 
     return (
       <img
+        className={styles.tile__image}
         draggable={false}
         alt="tile"
         src={require(`assets/tiles/${bgIndex}.png`)}

@@ -17,6 +17,10 @@
     &[data-selected = "true"] {
         border-color: gold;
     }
+
+    &__image {
+        user-select: none;
+    }
 }
 
 .main_grid {
