@@ -1,22 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./styles.module.scss";
 
 const GRID_SIZE = 81;
+const ROW_NUM = 9;
+const COL_NUM = 9;
+
 const DEFAULT_BG_INDEX = 18;
 
-function MainGrid({ tilesState, setTilesState }) {
+function MainGrid({ tilesState, setTilesState, origin }) {
   const [dragging, setDragging] = useState(false);
-  const tilesArray = new Array(GRID_SIZE).fill(null);
 
-  const isTileSelected = (tileNum) => {
-    return tilesState[tileNum]?.selected;
+  const isTileSelected = (coordination) => {
+    return tilesState[coordination]?.selected;
   };
 
-  const updateTile = (tileNum, newState) => {
-    const prevTileState = tilesState[tileNum] || {};
-    const newTilesState = [...tilesState];
+  const updateTile = (coordination, newState) => {
+    const prevTileState = tilesState[coordination] || {};
+    const newTilesState = { ...tilesState };
 
-    newTilesState[tileNum] = {
+    newTilesState[coordination] = {
       ...prevTileState,
       ...newState,
     };
@@ -24,28 +26,28 @@ function MainGrid({ tilesState, setTilesState }) {
     setTilesState(newTilesState);
   };
 
-  const markTileAsSelected = (tileNum) => {
-    updateTile(tileNum, { selected: true });
+  const markTileAsSelected = (coordination) => {
+    updateTile(coordination, { selected: true });
   };
 
-  const handleClickTile = (tileNum) => {
-    const prevTileState = tilesState[tileNum] || {};
+  const handleClickTile = (coordination) => {
+    const prevTileState = tilesState[coordination] || {};
 
-    updateTile(tileNum, { selected: !prevTileState.selected });
+    updateTile(coordination, { selected: !prevTileState.selected });
   };
 
-  const handleClickContextMenu = (e, tileNum) => {
+  const handleClickContextMenu = (e, coordination) => {
     e.preventDefault();
 
-    updateTile(tileNum, { bg: false });
+    updateTile(coordination, { bg: false });
   };
 
   const handleMouseDownOnGrid = () => {
     setDragging(true);
   };
 
-  const handleMouseMove = (tileNum) => {
-    if (dragging) markTileAsSelected(tileNum);
+  const handleMouseMove = (coordination) => {
+    if (dragging) markTileAsSelected(coordination);
   };
 
   const renderTileImage = (tile) => {
@@ -63,23 +65,41 @@ function MainGrid({ tilesState, setTilesState }) {
     );
   };
 
-  const renderTiles = tilesArray.map((_, index) => (
-    <div
-      onMouseUp={() => setDragging(false)}
-      onMouseMove={() => handleMouseMove(index)}
-      onDoubleClick={() => handleClickTile(index)}
-      data-selected={isTileSelected(index)}
-      className={styles.tile}
-      key={index}
-      onContextMenu={(e) => handleClickContextMenu(e, index)}
-    >
-      {renderTileImage(tilesState[index])}
-    </div>
-  ));
+  const renderTiles = () => {
+    const initArr = [];
+    const { x: xOrigin, y: yOrigin } = origin;
+
+    const minCol = xOrigin;
+    const maxCol = xOrigin + COL_NUM;
+    const minRow = yOrigin;
+    const maxRow = yOrigin + ROW_NUM;
+
+    for (let row = minRow; row < maxRow; row++) {
+      for (let col = minCol; col < maxCol; col++) {
+        const coordination = `${row}:${col}`;
+
+        initArr.push(
+          <div
+            onMouseUp={() => setDragging(false)}
+            onMouseMove={() => handleMouseMove(coordination)}
+            onDoubleClick={() => handleClickTile(coordination)}
+            data-selected={isTileSelected(coordination)}
+            className={styles.tile}
+            key={coordination}
+            onContextMenu={(e) => handleClickContextMenu(e, coordination)}
+          >
+            {renderTileImage(tilesState[coordination])}
+          </div>
+        );
+      }
+    }
+
+    return initArr;
+  };
 
   return (
     <div onMouseDown={handleMouseDownOnGrid} className={styles.main_grid}>
-      {renderTiles}
+      {renderTiles()}
     </div>
   );
 }
